@@ -1,0 +1,62 @@
+{
+  "Pepper__bell___Bacterial_spot": {
+    "name": "Pepper Bacterial Spot",
+    "description": "Bacterial infection causing dark, water-soaked spots on pepper leaves and fruit."
+  },
+  "Pepper__bell___healthy": {
+    "name": "Healthy Pepper",
+    "description": "No signs of disease detected on pepper plant."
+  },
+  "Potato___Early_blight": {
+    "name": "Potato Early Blight",
+    "description": "Fungal disease causing brown spots and concentric rings on potato leaves."
+  },
+  "Potato___Late_blight": {
+    "name": "Potato Late Blight",
+    "description": "Serious fungal disease leading to black lesions on leaves and stems."
+  },
+  "Potato___healthy": {
+    "name": "Healthy Potato",
+    "description": "No signs of disease detected on potato plant."
+  },
+  "Tomato_Bacterial_spot": {
+    "name": "Tomato Bacterial Spot",
+    "description": "Bacterial infection resulting in small, dark, water-soaked spots on leaves."
+  },
+  "Tomato_Early_blight": {
+    "name": "Tomato Early Blight",
+    "description": "Fungal disease causing brown spots and concentric rings on tomato leaves."
+  },
+  "Tomato_Late_blight": {
+    "name": "Tomato Late Blight",
+    "description": "Fungal disease causing dark lesions on leaves and stems of tomato."
+  },
+  "Tomato_Leaf_Mold": {
+    "name": "Tomato Leaf Mold",
+    "description": "Fungal infection leading to yellow spots on leaves and grey mold on the underside."
+  },
+  "Tomato_Septoria_leaf_spot": {
+    "name": "Tomato Septoria Leaf Spot",
+    "description": "Fungal disease producing small, circular spots with dark borders on leaves."
+  },
+  "Tomato_Spider_mites_Two_spotted_spider_mite": {
+    "name": "Tomato Spider Mite",
+    "description": "Pest infestation causing yellowing, speckled leaves due to spider mites."
+  },
+  "Tomato__Target_Spot": {
+    "name": "Tomato Target Spot",
+    "description": "Fungal disease causing target-shaped spots on leaves."
+  },
+  "Tomato__Tomato_YellowLeaf__Curl_Virus": {
+    "name": "Tomato Yellow Leaf Curl Virus",
+    "description": "Viral disease causing yellowing and curling of tomato leaves."
+  },
+  "Tomato__Tomato_mosaic_virus": {
+    "name": "Tomato Mosaic Virus",
+    "description": "Viral infection causing mottled leaves and stunted growth."
+  },
+  "Tomato_healthy": {
+    "name": "Healthy Tomato",
+    "description": "No signs of disease detected on tomato plant."
+  }
+}
