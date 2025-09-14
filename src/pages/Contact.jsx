@@ -1,11 +1,11 @@
 function Contact() {
   const team = [
-    { name: "Binay Mohan Pal", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)", year: "2024–2025" },
-    { name: "Mayank Pandey", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)", year: "2023–2024" },
-    { name: "Pratik Gupta", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)", year: "2023–2024" },
-    { name: "Nikhil Dubey", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)", year: "2023–2024" },
-    { name: "Harshvi Kumari", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)", year: "2023–2024" },
-    { name: "Aryan Shedge", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)", year: "2023–2024" },
+    { name: "Binay Mohan Pal", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)" },
+    { name: "Mayank Pandey", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)" },
+    { name: "Pratik Gupta", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)" },
+    { name: "Nikhil Dubey", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)"},
+    { name: "Harshvi Kumari", college: "Lokmanya Tilak College of Engineering", branch: "CSE(AI/ML)" },
+    { name: "Aryan Shedge", college: "Lokmanya Tilak College of Engineering", branch: "CSE(IOT)" },
   ];
 
   return (
@@ -74,7 +74,7 @@ function Contact() {
             <p className="text-gray-700 mt-1 text-center">
               {member.college} <br />
               {member.branch} <br />
-              {member.year}
+              
             </p>
           </div>
         ))}
