@@ -2,29 +2,34 @@ import { Link } from "react-router-dom";
 
 function Header() {
   return (
-    <nav className="bg-gray-600 text-white px-6 py-4 flex justify-between items-center">
-      <div className="text-xl font-bold">AgriAI</div>
-      <ul className="flex space-x-6">
+    <nav className="bg-gradient-to-r from-green-600 to-green-800 text-white px-6 py-4 flex justify-between items-center sticky top-0 z-50 shadow-lg">
+      {/* Logo */}
+      <div className="text-2xl font-extrabold tracking-wider drop-shadow-md">
+        AgriAI
+      </div>
+
+      {/* Navigation Links */}
+      <ul className="flex space-x-4 md:space-x-6">
         <li>
           <Link
             to="/"
-            className="hover:text-yellow-300 transition-colors duration-200"
-          >
-            Weather
-          </Link>
-        </li>
-        <li>
-          <Link
-            to="/Home"
-            className="hover:text-yellow-300 transition-colors duration-200"
+            className="px-4 py-2 rounded-lg hover:bg-green-700 hover:text-yellow-300 transition-all duration-300"
           >
             Home
           </Link>
         </li>
         <li>
           <Link
+            to="/Weather"
+            className="px-4 py-2 rounded-lg hover:bg-green-700 hover:text-yellow-300 transition-all duration-300"
+          >
+            Weather
+          </Link>
+        </li>
+        <li>
+          <Link
             to="/features"
-            className="hover:text-yellow-300 transition-colors duration-200"
+            className="px-4 py-2 rounded-lg hover:bg-green-700 hover:text-yellow-300 transition-all duration-300"
           >
             Features
           </Link>
@@ -32,7 +37,7 @@ function Header() {
         <li>
           <Link
             to="/contact"
-            className="hover:text-yellow-300 transition-colors duration-200"
+            className="px-4 py-2 rounded-lg hover:bg-green-700 hover:text-yellow-300 transition-all duration-300"
           >
             Contact
           </Link>
@@ -40,7 +45,7 @@ function Header() {
         <li>
           <Link
             to="/explore"
-            className="hover:text-yellow-300 transition-colors duration-200"
+            className="px-4 py-2 rounded-lg hover:bg-green-700 hover:text-yellow-300 transition-all duration-300"
           >
             Explore
           </Link>
