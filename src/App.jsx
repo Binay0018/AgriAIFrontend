@@ -5,6 +5,7 @@ import Weather from "./components/Weather";
 import Features from "./pages/Features";
 import Contact from "./pages/contact";
 import Explore from "./pages/Explore";
+import DiseaseDetector from "./components/DiseaseDetector";
 import "./style/app.css";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/explore" element={<Explore />} />
+          <Route path="/features/disease-detector" element={<DiseaseDetector />} />
         </Routes>
       </div>
     </div>
