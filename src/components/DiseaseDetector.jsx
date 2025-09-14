@@ -7,6 +7,14 @@ function DiseaseDetector() {
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
 
+  // Function to handle text-to-speech
+  const speakResult = (text) => {
+    if (!window.speechSynthesis) return; // browser doesn't support TTS
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "en-US"; // language
+    window.speechSynthesis.speak(utterance);
+  };
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
@@ -31,9 +39,7 @@ function DiseaseDetector() {
       formData.append("file", file); // must match FastAPI parameter name
 
       const { data } = await Ax.post("/api/predict", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       });
 
       // Map class to friendly name and description
@@ -43,9 +49,14 @@ function DiseaseDetector() {
       const description = diseases[prediction]?.description || "";
 
       setResult({ friendlyName, description, confidence });
+
+      // Speak the result
+      speakResult(`Prediction: ${friendlyName}. Confidence: ${confidence} percent. .description:${description}`);
     } catch (error) {
       console.error("Error uploading file:", error);
-      setResult({ error: error.response?.data?.detail || "Something went wrong" });
+      const errorMsg = error.response?.data?.detail || "Something went wrong";
+      setResult({ error: errorMsg });
+      speakResult(`Error: ${errorMsg}`);
     }
   };
 
@@ -67,11 +78,7 @@ function DiseaseDetector() {
 
       {preview && (
         <div className="mb-4">
-          <img
-            src={preview}
-            alt="Preview"
-            className="w-full h-auto rounded shadow"
-          />
+          <img src={preview} alt="Preview" className="w-full h-auto rounded shadow" />
         </div>
       )}
 
