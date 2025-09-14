@@ -1,6 +1,5 @@
 import DiseaseDetector from "../components/DiseaseDetector";
 import VoiceAssistant from "../components/VoiceAssistant";
-import Weather from "../components/Weather";
 
 function Home() {
   return (
@@ -8,7 +7,6 @@ function Home() {
       <h1>AgriAI Frontend</h1>
       <DiseaseDetector />
       <VoiceAssistant />
-      <Weather />
     </div>
   );
 }
