@@ -1,48 +1,98 @@
 import { useState } from "react";
 import Ax from "../helper/axios";
+import diseases from "../helper/diseases.json"; // your JSON file
+
 function DiseaseDetector() {
   const [file, setFile] = useState(null);
-  const [result, setResult] = useState("");
+  const [preview, setPreview] = useState(null);
+  const [result, setResult] = useState(null);
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    if (selectedFile) {
+      setPreview(URL.createObjectURL(selectedFile)); // create image preview
+    } else {
+      setPreview(null);
+    }
+    setResult(null); // clear previous result
+  };
 
   const handleUpload = async () => {
-    if (!file) return alert("Please select an image");
-    setResult("");
+    if (!file) {
+      alert("Please select an image");
+      return;
+    }
+
+    setResult({ loading: true });
 
     try {
       const formData = new FormData();
-      formData.append("image", file);
-      
-      const { data } = await Ax.post("/upload-image", formData, {
+      formData.append("file", file); // must match FastAPI parameter name
+
+      const { data } = await Ax.post("/api/predict", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
       });
 
-      setResult(data?.disease || "No disease detected");
+      // Map class to friendly name and description
+      const prediction = data.class;
+      const confidence = (data.confidence * 100).toFixed(2);
+      const friendlyName = diseases[prediction]?.name || prediction;
+      const description = diseases[prediction]?.description || "";
+
+      setResult({ friendlyName, description, confidence });
     } catch (error) {
       console.error("Error uploading file:", error);
-      setResult("Something went wrong");
+      setResult({ error: error.response?.data?.detail || "Something went wrong" });
     }
   };
 
   return (
-    <div className="disease-detector">
-      <h2>Crop Disease Detector</h2>
-      <div className="mb-4">
-        <input
-          type="file"
-          accept="image/*"
-          className="block w-full text-sm text-gray-600
-                     file:mr-4 file:py-2 file:px-4
-                     file:rounded-full file:border-0
-                     file:text-sm file:font-semibold
-                     file:bg-green-100 file:text-green-700
-                     hover:file:bg-green-200"
-          onChange={(e) => setFile(e.target.files[0])}
-        />
-      </div>
-      <button onClick={handleUpload}>Detect Disease</button>
-      {result && <p>Result: {result}</p>}
+    <div className="disease-detector p-4 max-w-md mx-auto">
+      <h2 className="text-xl font-bold mb-4">Crop Disease Detector</h2>
+
+      <input
+        type="file"
+        accept="image/*"
+        className="block w-full text-sm text-gray-600
+                   file:mr-4 file:py-2 file:px-4
+                   file:rounded-full file:border-0
+                   file:text-sm file:font-semibold
+                   file:bg-green-100 file:text-green-700
+                   hover:file:bg-green-200 mb-4"
+        onChange={handleFileChange}
+      />
+
+      {preview && (
+        <div className="mb-4">
+          <img
+            src={preview}
+            alt="Preview"
+            className="w-full h-auto rounded shadow"
+          />
+        </div>
+      )}
+
+      <button
+        onClick={handleUpload}
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4"
+      >
+        Detect Disease
+      </button>
+
+      {result?.loading && <p>Detecting...</p>}
+
+      {result?.error && <p className="text-red-500">Error: {result.error}</p>}
+
+      {result?.friendlyName && (
+        <div className="bg-green-50 p-4 rounded shadow">
+          <p className="font-bold text-lg">{result.friendlyName}</p>
+          <p>Confidence: {result.confidence}%</p>
+          <p className="text-gray-700 mt-2">{result.description}</p>
+        </div>
+      )}
     </div>
   );
 }
